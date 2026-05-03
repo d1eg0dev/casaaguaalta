@@ -10,6 +10,27 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <script>
+    window.addEventListener('load', function() {
+        var video = document.getElementById('heroVideo');
+        
+        // Intentar reproducir explícitamente
+        var promise = video.play();
+
+        if (promise !== undefined) {
+            promise.then(_ => {
+                // Autoplay inició con éxito
+                console.log("Video de Casa Agua Alta reproduciendo.");
+            }).catch(error => {
+                // Autoplay fue bloqueado, intentamos de nuevo al primer clic o scroll
+                console.log("Autoplay bloqueado. Esperando interacción.");
+                document.body.addEventListener('click', function() {
+                    video.play();
+                }, {once: true});
+            });
+        }
+    });
+</script>
 <div class="cursor-dot" id="cursor"></div>
 <div class="mobile-menu" id="mobile-menu">
   <a href="#" onclick="showPage('home')">Home</a>
