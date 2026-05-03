@@ -43,20 +43,32 @@
   <a href="#" onclick="showPage('location')">Location</a>
   <a href="#" onclick="showPage('contact')" style="color:var(--terra)">Inquire</a>
 </div>
-<nav id="navbar">
-    <a href="#" class="nav-logo" onclick="showPage('home');return false"><img src="images/logo.png" alt="Casa Agua Alta"></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('house');return false">The House</a></li>
-    <li><a href="#" onclick="showPage('suites');return false">Suites</a></li>
-    <li><a href="#" onclick="showPage('experiences');return false">Experiences</a></li>
-    <li><a href="#" onclick="showPage('polo');return false">Polo</a></li>
-    <li><a href="#" onclick="showPage('gastronomy');return false">Gastronomy</a></li>
-    <li><a href="#" onclick="showPage('gallery');return false">Gallery</a></li>
-    <li><a href="#" onclick="showPage('location');return false">Location</a></li>
-  </ul>
-  <a href="#" class="nav-cta" onclick="showPage('contact');return false">Inquire</a>
-  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+<header class="site-header">
+  <div class="header-container">
+    <!-- Lado Izquierdo: Branding -->
+    <div class="header-logo">
+      <a href="#" class="logo-text">Casa Agua Alta</a>
+    </div>
+
+    <!-- Centro: Navegación -->
+    <nav class="header-nav">
+      <ul>
+        <li><a href="#" onclick="showPage('house')">THE HOUSE</a></li>
+        <li><a href="#" onclick="showPage('suites')">SUITES</a></li>
+        <li><a href="#" onclick="showPage('experiences')">EXPERIENCES</a></li>
+        <li><a href="#" onclick="showPage('polo')">POLO</a></li>
+        <li><a href="#" onclick="showPage('gastronomy')">GASTRONOMY</a></li>
+        <li><a href="#" onclick="showPage('gallery')">GALLERY</a></li>
+        <li><a href="#" onclick="showPage('location')">LOCATION</a></li>
+      </ul>
+    </nav>
+
+    <!-- Lado Derecho: Acción -->
+    <div class="header-actions">
+      <a href="#" class="btn-inquire-outline" onclick="showPage('contact')">INQUIRE</a>
+    </div>
+  </div>
+</header>
 
 <!-- ══════ HOME ══════ -->
 <div class="page-section active" id="page-home">
