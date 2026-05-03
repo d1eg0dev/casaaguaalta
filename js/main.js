@@ -1,0 +1,127 @@
+/* CASA AGUA ALTA — Main JS */
+
+// ── Cursor ──────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX - 4 + 'px';
+    cursor.style.top  = e.clientY - 4 + 'px';
+  });
+  document.querySelectorAll('a,button,.suite-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+  });
+}
+
+// ── Nav scroll + hero state ─────────────────────────────
+const nav = document.getElementById('navbar');
+let currentPage = 'home';
+
+function updateNav() {
+  const scrolled = window.scrollY > 80;
+  nav.classList.toggle('scrolled', scrolled);
+  nav.classList.toggle('nav-hero', currentPage === 'home' && !scrolled);
+}
+window.addEventListener('scroll', updateNav);
+
+// ── Video autoplay fallback ─────────────────────────────
+const video = document.querySelector('.hero-media video');
+if (video) {
+  const tryPlay = () => video.play().catch(() => {});
+  tryPlay();
+  document.addEventListener('click',      tryPlay, { once: true });
+  document.addEventListener('touchstart', tryPlay, { once: true });
+}
+
+// ── Mobile menu ─────────────────────────────────────────
+const hamburger  = document.querySelector('.nav-hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    const s = hamburger.querySelectorAll('span');
+    if (mobileMenu.classList.contains('active')) {
+      s[0].style.transform = 'rotate(45deg) translate(4px,4px)';
+      s[1].style.opacity   = '0';
+      s[2].style.transform = 'rotate(-45deg) translate(4px,-4px)';
+    } else {
+      s[0].style.transform = 'none';
+      s[1].style.opacity   = '1';
+      s[2].style.transform = 'none';
+    }
+  });
+}
+
+function closeMobileMenu() {
+  if (mobileMenu) mobileMenu.classList.remove('active');
+  const s = hamburger ? hamburger.querySelectorAll('span') : [];
+  s.forEach(x => { x.style.transform = 'none'; x.style.opacity = '1'; });
+}
+
+// ── Page switching ───────────────────────────────────────
+function showPage(id) {
+  closeMobileMenu();
+  document.querySelectorAll('.page-section').forEach(p => {
+    p.classList.remove('active');
+    p.querySelectorAll('.reveal.visible').forEach(r => r.classList.remove('visible'));
+  });
+  const page = document.getElementById('page-' + id);
+  if (page) {
+    page.classList.add('active');
+    window.scrollTo(0, 0);
+    currentPage = id;
+    updateNav();
+    setTimeout(initReveals, 100);
+  }
+}
+
+// ── Scroll reveals ───────────────────────────────────────
+function initReveals() {
+  const reveals = document.querySelectorAll('.page-section.active .reveal:not(.visible)');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => obs.observe(el));
+}
+
+// ── Contact form ─────────────────────────────────────────
+const form          = document.getElementById('inquire-form');
+const formSuccess   = document.getElementById('form-success');
+const formContainer = document.getElementById('form-container');
+if (form) {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn  = form.querySelector('.btn-primary');
+    const orig = btn.innerHTML;
+    btn.innerHTML = 'SENDING...';
+    btn.style.opacity = '.6';
+    try {
+      const r = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (r.ok) {
+        formContainer.style.display = 'none';
+        formSuccess.classList.add('active');
+      } else {
+        btn.innerHTML = 'ERROR — TRY AGAIN';
+        btn.style.opacity = '1';
+        setTimeout(() => { btn.innerHTML = orig; }, 3000);
+      }
+    } catch(err) {
+      btn.innerHTML = 'ERROR — TRY AGAIN';
+      btn.style.opacity = '1';
+      setTimeout(() => { btn.innerHTML = orig; }, 3000);
+    }
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────
+updateNav();
+initReveals();
