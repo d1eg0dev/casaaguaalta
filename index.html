@@ -40,9 +40,14 @@
 <!-- ══════ HOME ══════ -->
 <div class="page-section active" id="page-home">
   <section class="hero">
-    <div class="hero-media"><video autoplay muted loop playsinline poster="images/AGUA_ALTA_POSTER.jpg">
-    <source src="images/AGUA_ALTA_VID.mp4" type="video/mp4">
-    </video><div class="hero-overlay"></div></div>
+    <div class="hero-media">
+    <!-- Se añade 'id' para forzar el play por JS si es necesario -->
+    <video id="heroVideo" autoplay muted loop playsinline poster="images/poster-placeholder.jpg">
+        <source src="images/AGUA_ALTA_VID.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+    </video>
+    <div class="hero-overlay"></div>
+</div>
     <div class="hero-content">
       <p class="hero-eyebrow">Careyes · Costalegre · México</p>
       <h1 class="hero-title">Where Polo, Ocean,<br>and <em>Home</em> Meet</h1>
