@@ -56,6 +56,52 @@ a { text-decoration: none; color: inherit; }
 }
 .cursor-dot.hovering { transform: scale(5); background: var(--gold); }
 
+/* Configuración crucial para el contenedor Hero */
+.hero {
+  position: relative; /* Esto es vital: obliga al video absolute a quedarse aquí dentro */
+  overflow: hidden;   /* Oculta cualquier parte del video que sobresalga */
+  /* Asegúrate de tener una altura definida para tu hero, por ejemplo: */
+  min-height: 100vh;  
+  width: 100%;
+}
+
+/* El contenedor del video */
+#video-viewport {
+  position: absolute; /* Cambiado de 'fixed' a 'absolute' */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Mantiene el video en el fondo del hero */
+  background-color: #000;
+}
+
+#ytplayer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Evita interacciones */
+}
+
+/* Asegurar que el contenido del hero flote por encima del video */
+.hero-overlay, 
+.hero-content, 
+.hero-scroll {
+  position: relative;
+  z-index: 2; /* Mayor que el z-index del video */
+}
+
+/* Si tu overlay tiene un color de fondo semitransparente, asegúrate de que cubra todo */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Ejemplo: background: rgba(0,0,0,0.4); */
+}
+
 /* ══════════════════════════════════════════
    NAVIGATION
    ══════════════════════════════════════════ */
