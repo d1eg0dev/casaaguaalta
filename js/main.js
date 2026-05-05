@@ -131,3 +131,72 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init reveals on load
   initReveals();
 });
+
+// 1. Carga la API de forma asíncrona
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('ytplayer', {
+    videoId: 'v4bqQeNuN4c', // Tu ID de video
+    playerVars: {
+      'autoplay': 1,
+      'controls': 0,
+      'rel': 0,
+      'showinfo': 0,
+      'modestbranding': 1,
+      'loop': 1,
+      'playlist': 'v4bqQeNuN4c',
+      'mute': 1,
+      'playsinline': 1
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  event.target.mute();
+  event.target.playVideo();
+  
+  // Sugerir alta calidad
+  // Nota: YouTube puede ignorarlo si la conexión es muy lenta
+  event.target.setPlaybackQuality('hd1080'); 
+  
+  resizeVideo();
+}
+
+function onPlayerStateChange(event) {
+  // Asegura el loop infinito sin saltos negros
+  if (event.data === YT.PlayerState.ENDED) {
+    player.playVideo();
+  }
+}
+
+// 3. Función para que el video sea "Responsive" (Efecto Cover)
+function resizeVideo() {
+  var container = document.getElementById('video-container');
+  var width = container.offsetWidth;
+  var height = container.offsetHeight;
+  var playerElement = document.getElementById('ytplayer');
+
+  // Relación de aspecto 16:9
+  var aspect = 16 / 9;
+
+  if (width / height > aspect) {
+    // Pantalla ancha (PC)
+    playerElement.style.width = width + 'px';
+    playerElement.style.height = (width / aspect) + 'px';
+  } else {
+    // Pantalla alta (Móvil)
+    playerElement.style.width = (height * aspect) + 'px';
+    playerElement.style.height = height + 'px';
+  }
+}
+
+window.addEventListener('resize', resizeVideo);
