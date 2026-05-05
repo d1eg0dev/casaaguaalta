@@ -131,3 +131,75 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init reveals on load
   initReveals();
 });
+
+// Carga la API de YouTube
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('ytplayer', {
+    videoId: 'v4bqQeNuN4c',
+    playerVars: {
+      'autoplay': 1,
+      'mute': 1,
+      'controls': 0,
+      'loop': 1,
+      'playlist': 'v4bqQeNuN4c',
+      'rel': 0,
+      'showinfo': 0,
+      'modestbranding': 1,
+      'playsinline': 1,
+      'enablejsapi': 1
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  event.target.mute();
+  event.target.playVideo();
+  
+  // Forzar sugerencia de alta calidad
+  if (event.target.setPlaybackQuality) {
+      event.target.setPlaybackQuality('hd1080');
+  }
+  
+  resizeVideo();
+}
+
+function onPlayerStateChange(event) {
+  // Reinicia el video al terminar para un loop fluido
+  if (event.data === YT.PlayerState.ENDED) {
+    player.playVideo();
+  }
+}
+
+// Función para que el video sea "Background Cover" (solución para móvil)
+function resizeVideo() {
+  var container = document.getElementById('video-viewport');
+  var playerElement = document.getElementById('ytplayer');
+  
+  if (!container || !playerElement) return; // Prevención de errores si los elementos no existen
+  
+  var w = container.offsetWidth;
+  var h = container.offsetHeight;
+  
+  // Relación de aspecto 16:9
+  if (w / h > 16 / 9) {
+    // Pantalla ancha
+    playerElement.style.width = w + 'px';
+    playerElement.style.height = (w * 9 / 16) + 'px';
+  } else {
+    // Pantalla alta (Móvil)
+    playerElement.style.width = (h * 16 / 9) + 'px';
+    playerElement.style.height = h + 'px';
+  }
+}
+
+window.addEventListener('resize', resizeVideo);
