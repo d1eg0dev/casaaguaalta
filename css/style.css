@@ -557,3 +557,16 @@ footer { background: var(--forest); padding: 72px 48px 36px; }
   .mini-hero { height: 35vh; min-height: 280px; }
   .mini-hero-content { padding: 0 20px; }
 }
+
+.hero-media iframe {
+  width: 300vw !important;
+  height: 300vh !important;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border: none !important;
+  pointer-events: none !important;
+}
