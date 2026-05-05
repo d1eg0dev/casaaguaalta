@@ -12,8 +12,8 @@
   --tinto: #722F37;
   --tinto-dark: #5C252C;
   --tinto-light: #8B3A44;
-  --forest: #2B3C2B;
-  --forest-light: #3A4F3A;
+  --forest: #722F37;
+  --forest-light: #8B3A44;
   --gold: #C9A355;
   --gold-light: #D4B56E;
   --cream: #FBF9F6;
@@ -54,7 +54,7 @@ a { text-decoration: none; color: inherit; }
    NAVIGATION
    ══════════════════════════════════════════ */
 .top-bar {
-  background: var(--forest); padding: 8px 48px; display: flex;
+  background: var(--tinto-dark); padding: 8px 48px; display: flex;
   justify-content: space-between; align-items: center; font-size: 0.65rem;
   color: rgba(245,242,238,0.6); letter-spacing: 0.04em;
 }
@@ -62,25 +62,23 @@ a { text-decoration: none; color: inherit; }
 .top-bar a:hover { color: var(--gold); }
 
 nav {
-  position: sticky; top: 0; z-index: 1000; background: var(--white);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: transparent;
   padding: 0 48px; display: flex; justify-content: space-between; align-items: center;
-  height: 72px; border-bottom: 1px solid rgba(0,0,0,0.06);
-  transition: box-shadow 0.4s var(--ease);
+  height: 72px; transition: all 0.5s var(--ease);
 }
-nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-
+nav.scrolled { background: rgba(114,47,55,0.95); backdrop-filter: blur(20px); box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
 .nav-logo img { height: 44px; width: auto; transition: opacity 0.3s; }
 .nav-logo:hover img { opacity: 0.8; }
 
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
   font-family: var(--font-sans); font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase; color: var(--text);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--white);
   padding: 4px 0; position: relative;
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -2px; left: 0;
-  width: 0; height: 2px; background: var(--tinto); transition: width 0.35s var(--ease);
+  width: 0; height: 2px; background: var(--gold); transition: width 0.35s var(--ease);
 }
 .nav-links a:hover::after { width: 100%; }
 .nav-links a:hover { color: var(--tinto); }
@@ -98,7 +96,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   display: none; background: none; border: none; padding: 8px; cursor: pointer;
   flex-direction: column; gap: 6px;
 }
-.nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: all 0.3s; }
+.nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.3s; }
 .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
