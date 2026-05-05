@@ -140,11 +140,16 @@
   <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- ══════════════════════════ HOME ══════════════════════════ -->
 <div class="page-section active" id="page-home">
   <section class="hero">
-        <div class="hero-overlay"></div>
-      </div>    
+    
+    <!-- 1. El contenedor del video ahora vive DENTRO del hero -->
+    <div id="video-viewport">
+      <div id="ytplayer"></div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+    
     <div class="hero-content">
       <p class="hero-eyebrow">Careyes · Costalegre · México</p>
       <h1 class="hero-title">Where Polo, Ocean,<br>and <em>Home</em> Meet</h1>
@@ -154,8 +159,11 @@
         <a href="#" class="btn btn-ghost" onclick="showPage('contact');return false">Inquire</a>
       </div>
     </div>
+    
     <div class="hero-scroll"><span>Scroll</span><div class="scroll-bar"></div></div>
+    
   </section>
+</div>
 
   <!-- ABOUT SPLIT -->
   <section class="section bg-white">
