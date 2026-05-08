@@ -72,12 +72,17 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     /* El ancho y alto exactos se los dará tu script fitVideo() */
 }
 
-#yt-wrap iframe {
+#yt-wrap {
     /* ... tus otras propiedades ... */
     pointer-events: none; /* Esto hace que el video sea "invisible" a los clics */
     user-select: none;
-}
     
+}
+
+#yt-wrap {
+        width: 100% !important;
+        height: 100% !important;
+    }
 
 /* 3. EL FILTRO: Overlay oscuro */
 .hero-overlay {
@@ -294,7 +299,8 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 .mhero{height:32vh;min-height:260px}.mhero-c{padding:0 20px}
     .hero {
         height: 100vh !important;
-        height: 100svh !important; /* Para Safari en iPhone */
+        height: 100svh !important; /* Fix para Safari iOS */
+        min-height: 100svh !important;
     }
     
     .hero-inner {
@@ -309,7 +315,12 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
     
     /* Asegura que el contenedor del video también mida el 100% */
     .hero-vid {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
         height: 100% !important;
+        z-index: 0;
     }
 }
 </style>
@@ -731,33 +742,40 @@ function onYouTubeIframeAPIReady() {
 }
 
 function fitVideo() {
-    var container = document.querySelector('.hero'); 
+    var container = document.querySelector('.hero');
     var iframe = document.querySelector('#yt-wrap iframe');
+    
     if (!container || !iframe) return;
 
     var containerW = container.offsetWidth;
     var containerH = container.offsetHeight;
-    var aspectRatio = 16 / 9;
-    
-    // Aumentamos la escala un 15% (1.15) para sacar los textos de YouTube del cuadro
-    var scale = 1.15; 
+    var videoAspectRatio = 16 / 9;
+    var containerAspectRatio = containerW / containerH;
 
-    if (containerW / containerH > aspectRatio) {
+    // Aumentamos un 1.2 (20%) extra para asegurar que los bordes negros
+    // de la interfaz de YouTube queden fuera de la pantalla.
+    var scale = 1.2; 
+
+    if (containerAspectRatio > videoAspectRatio) {
+        // Pantalla ancha (Desktop)
         iframe.style.width = (containerW * scale) + 'px';
-        iframe.style.height = ((containerW / aspectRatio) * scale) + 'px';
+        iframe.style.height = ((containerW / videoAspectRatio) * scale) + 'px';
     } else {
-        iframe.style.width = ((containerH * aspectRatio) * scale) + 'px';
+        // Pantalla alta (Mobile Portrait) - Aquí es donde fallaba
+        iframe.style.width = ((containerH * videoAspectRatio) * scale) + 'px';
         iframe.style.height = (containerH * scale) + 'px';
     }
+
+    // Centrado absoluto impecable
+    iframe.style.position = 'absolute';
+    iframe.style.top = '50%';
+    iframe.style.left = '50%';
+    iframe.style.transform = 'translate(-50%, -50%)';
 }
-// Eventos para recalcular el tamaño
+
+// Escuchar cambios de tamaño y rotación de pantalla
 window.addEventListener('resize', fitVideo);
-
-// En mobile, el cambio de orientación a veces tarda unos ms en reportar el tamaño real
-window.addEventListener('orientationchange', function() {
-    setTimeout(fitVideo, 200);
-});
-
+window.addEventListener('orientationchange', () => setTimeout(fitVideo, 300));
 // Ejecutar al cargar todo por si acaso
 window.addEventListener('load', fitVideo);
 // Nav scroll
