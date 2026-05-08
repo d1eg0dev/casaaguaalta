@@ -44,7 +44,7 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .hero {
     position: relative !important;
     height: 100vh !important; 
-    height: 100svh !important; /* Altura dinámica para Safari mobile */
+    min-height: auto; /* Quitamos el mínimo para que pueda ser pequeño en móvil */
     width: 100% !important;
     overflow: hidden !important;
     display: flex;
