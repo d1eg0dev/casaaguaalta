@@ -41,12 +41,10 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .mob-menu a:hover{color:var(--tinto)}
 
 /* ══ HERO ══ */
-.hero-vid{overflow:hidden}
-.hero-vid::after{content:'';position:absolute;top:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(28,28,28,.8),transparent);z-index:1;pointer-events:none}
+/* ══ HERO ══ */
 .hero {
     position: relative !important;
     height: 100vh !important; 
-    min-height: auto; /* Quitamos el mínimo para que pueda ser pequeño en móvil */
     width: 100% !important;
     overflow: hidden !important;
     display: flex;
@@ -60,51 +58,73 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     height: 100% !important;
     z-index: 0;
     pointer-events: none;
+    background: #000; /* Fondo negro por si el video tarda en cargar */
 }
 
-.hero-vid iframe{position:absolute;top:50%;left:50%;min-width:100vw;min-height:100vh;width:177.77vh;height:56.25vw;transform:translate(-50%,-50%);border:none;pointer-events:none}
-#yt-wrap iframe {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    
-    /* En pantallas verticales (mobile), el ancho debe ser masivo 
-       para que la altura cubra el 100% del alto del celular */
-    min-width: 177.77vh !important; /* (16/9 * 100) garantiza cubrir el alto */
-    min-height: 100vh !important;
-    min-height: 100svh !important;
-    
-    width: auto !important;
-    height: auto !important;
-    border: none;
-}
-}
-
-#yt-wrap {
-        width: 100% !important;
-        height: 100% !important;
-        pointer-events: none; /* Esto hace que el video sea "invisible" a los clics */
-        user-select: none;
-    }
-
-/* 3. EL FILTRO: Overlay oscuro */
-.hero-overlay {
+/* AQUÍ ESTÁ EL CAMBIO IMPORTANTE: */
+.hero-vid iframe {
     position: absolute;
-    inset: 0;
-    z-index: 1; /* Encima del video, pero debajo del texto */
-    background: linear-gradient(160deg, rgba(28,28,28,.55) 0%, rgba(28,28,28,.2) 50%, rgba(28,28,28,.6) 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* El truco para cubrir todo el espacio sin importar el tamaño de pantalla */
+    width: 100vw; 
+    height: 56.25vw; /* Relación 16:9 basada en el ancho */
+    
+    min-height: 100vh; 
+    min-width: 177.77vh; /* Relación 16:9 basada en el alto */
+    
+    border: none;
     pointer-events: none;
 }
 
-/* 4. EL FRENTE: Tu texto y botones */
-.hero-inner {
-   position: relative;
-    z-index: 2;
-    padding: 0 24px 60px; /* Ajuste para que no lo tape el botón de WhatsApp */
-    width: 100%;
+/* Efecto de degradado superior para que el logo/menú se vea bien */
+.hero-vid::after {
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:120px; /* Un poco más alto para mejor visibilidad */
+    background:linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    z-index:1;
+    pointer-events:none;
+}
+#yt-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #000;
 }
 
+/* 2. EL TRUCO CSS PARA EL IFRAME */
+/* Atacamos el iframe que YouTube crea automáticamente dentro de #yt-wrap */
+#yt-wrap iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Nadie puede pausarlo haciendo clic */
+  border: none;
+  
+  /* Forzar aspecto 16:9 basado en el ancho */
+  width: 100vw;
+  height: 56.25vw;
+  
+  /* Forzar que nunca sea más pequeño que el alto (para celulares) */
+  min-height: 100vh;
+  min-width: 177.77vh; 
+}
+
+/* 3. Asegurar que tu overlay y contenido queden arriba */
+.hero-overlay,
+.hero-inner {
+  position: relative;
+  z-index: 2; /* Esto los pone por encima del video */
+}
 /* ══ TIPOGRAFÍA Y ESTILOS (Sin cambios) ══ */
 .hero .eyebrow { color: var(--gold); }
 .hero h1 { font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 400; line-height: 1.1; color: var(--white); margin: 12px 0 16px; }
@@ -339,16 +359,19 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="page active" id="p-home">
 
 <section class="hero">
-<div class="hero-vid" id="yt-wrap"></div>
+<div class="hero-vid" id="yt-wrap">
+  <div id="ytplayer"></div> </div>
+
 <div class="hero-overlay"></div>
+
 <div class="hero-inner">
-<p class="eyebrow" style="color:var(--gold);opacity:0;transform:translateY(16px);animation:rise .7s .3s var(--out) forwards">Careyes · Costalegre · México</p>
-<h1 style="opacity:0;transform:translateY(20px);animation:rise .8s .5s var(--out) forwards">Where Polo, Ocean,<br>and <em>Home</em> Meet</h1>
-<p style="opacity:0;transform:translateY(16px);animation:rise .7s .7s var(--out) forwards">A private family villa — five suites, full staff, and a way of life shaped by polo, art, and the Pacific.</p>
-<div class="hero-btns" style="opacity:0;animation:rise .7s .9s var(--out) forwards">
-<a href="#" class="btn btn-f" onclick="go('house');return false">Explore the House →</a>
-<a href="#" class="btn btn-g" onclick="go('contact');return false">Inquire</a>
-</div>
+  <p class="eyebrow" style="color:var(--gold);opacity:0;transform:translateY(16px);animation:rise .7s .3s var(--out) forwards">Careyes · Costalegre · México</p>
+  <h1 style="opacity:0;transform:translateY(20px);animation:rise .8s .5s var(--out) forwards">Where Polo, Ocean,<br>and <em>Home</em> Meet</h1>
+  <p style="opacity:0;transform:translateY(16px);animation:rise .7s .7s var(--out) forwards">A private family villa — five suites, full staff, and a way of life shaped by polo, art, and the Pacific.</p>
+  <div class="hero-btns" style="opacity:0;animation:rise .7s .9s var(--out) forwards">
+    <a href="#" class="btn btn-f" onclick="go('house');return false">Explore the House →</a>
+    <a href="#" class="btn btn-g" onclick="go('contact');return false">Inquire</a>
+  </div>
 </div>
 </section>
 
@@ -687,59 +710,55 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <!-- ══════════════ JAVASCRIPT ══════════════ -->
 <script>
 // ── YouTube Hero — Mobile-proof fit ─────────────────────
-(function() {
-  var TAG = document.createElement('script');
-  TAG.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(TAG);
-})();
+// 1. Cargar la API de YouTube
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var ytPlayer;
+var player;
 
+// 2. Esta función se ejecuta cuando la API está lista
 function onYouTubeIframeAPIReady() {
-  ytPlayer = new YT.Player('yt-wrap', {
+  player = new YT.Player('ytplayer', { // Busca el ID "ytplayer" en tu HTML
     videoId: 'v4bqQeNuN4c',
     playerVars: {
-      autoplay: 1,
-      mute: 1,
-      loop: 1,
-      playlist: 'v4bqQeNuN4c',
-      controls: 0,
-      start: 16,
-      showinfo: 0,
-      rel: 0,
-      iv_load_policy: 3,
-      modestbranding: 1,
-      playsinline: 1,       // crítico en iOS
-      enablejsapi: 1
+      'autoplay': 1,
+      'mute': 1,      // Obligatorio para que el autoplay funcione en navegadores
+      'controls': 0,
+      'loop': 1,
+      'playlist': 'v4bqQeNuN4c', // Necesario para que el loop de YT funcione
+      'rel': 0,
+      'showinfo': 0,
+      'modestbranding': 1,
+      'playsinline': 1,
+      'enablejsapi': 1
     },
     events: {
-      onReady: function(e) {
-        e.target.mute();
-        e.target.playVideo();
-        fitVideo();
-      },
-      onStateChange: function(e) {
-        // Si el video se pausa (ej. tab oculto), re-play
-        if (e.data === YT.PlayerState.PAUSED) {
-          e.target.playVideo();
-        }
-      }
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
     }
   });
 }
 
-function fitVideo(){
-var w=document.querySelector('.hero');if(!w)return;
-var el=document.querySelector('#yt-wrap iframe');if(!el)return;
-var vw=w.offsetWidth,vh=w.offsetHeight;
-var nw,nh;
-if(vw/vh>16/9){nw=vw;nh=vw*9/16}else{nh=vh;nw=vh*16/9}
-el.style.width=nw+'px';el.style.height=nh+'px';
-el.style.position='absolute';el.style.top='50%';el.style.left='50%';
-el.style.transform='translate(-50%,-50%)';el.style.pointerEvents='none';el.style.border='none';
+// 3. Cuando el reproductor está listo
+function onPlayerReady(event) {
+  event.target.mute();
+  event.target.playVideo();
+  
+  // Sugerir alta calidad
+  if (event.target.setPlaybackQuality) {
+    event.target.setPlaybackQuality('hd1080');
+  }
 }
-// Ejecutar al cargar todo por si acaso
-window.addEventListener('load', fitVideo);
+
+// 4. Asegurar el loop infinito
+function onPlayerStateChange(event) {
+  if (event.data === YT.PlayerState.ENDED) {
+    player.playVideo();
+  }
+}
+    
 // Nav scroll
 var hdr=document.getElementById('hdr');
 window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
