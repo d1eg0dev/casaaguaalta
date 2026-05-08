@@ -724,28 +724,25 @@ function onYouTubeIframeAPIReady() {
 }
 
 function fitVideo() {
-    // Buscamos el contenedor padre (asegúrate que sea .hero-vid)
-    var container = document.querySelector('.hero-vid');
+    var container = document.querySelector('.hero'); 
     var iframe = document.querySelector('#yt-wrap iframe');
-    
     if (!container || !iframe) return;
 
     var containerW = container.offsetWidth;
     var containerH = container.offsetHeight;
     var aspectRatio = 16 / 9;
+    
+    // Aumentamos la escala un 15% (1.15) para sacar los textos de YouTube del cuadro
+    var scale = 1.15; 
 
-    // Lógica "Cover": llenar el espacio sin dejar franjas
     if (containerW / containerH > aspectRatio) {
-        // Pantalla ancha (Desktop)
-        iframe.style.width = containerW + 'px';
-        iframe.style.height = (containerW / aspectRatio) + 'px';
+        iframe.style.width = (containerW * scale) + 'px';
+        iframe.style.height = ((containerW / aspectRatio) * scale) + 'px';
     } else {
-        // Pantalla alta (Mobile)
-        iframe.style.width = (containerH * aspectRatio) + 'px';
-        iframe.style.height = containerH + 'px';
+        iframe.style.width = ((containerH * aspectRatio) * scale) + 'px';
+        iframe.style.height = (containerH * scale) + 'px';
     }
 }
-
 // Eventos para recalcular el tamaño
 window.addEventListener('resize', fitVideo);
 
