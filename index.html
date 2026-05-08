@@ -52,36 +52,26 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 
 /* 1. EL FONDO: Contenedor del video */
 .hero-vid {
-    position: absolute; /* Cambiado a absolute para que no rompa el Flexbox */
+    position: relative; /* Cambiado a relative para que no rompa el Flexbox */
     inset: 0; /* Lo estira a los 4 bordes (top, right, bottom, left: 0) */
     width: 100%;
     height: 100%;
     z-index: 0; /* Capa más baja */
     background: var(--dark); 
     pointer-events: none;
-}
-
-/* 2. EL IFRAME: Controlado por tu JS */
-.hero-vid {
-    position: absolute;
     top: 50%;
     left: 50%;
     translate: (-50%,-50%);
     border: none;
-    pointer-events: none;
-    /* El ancho y alto exactos se los dará tu script fitVideo() */
 }
 
-#yt-wrap {
-    /* ... tus otras propiedades ... */
-    pointer-events: none; /* Esto hace que el video sea "invisible" a los clics */
-    user-select: none;
-    
 }
 
 #yt-wrap {
         width: 100% !important;
         height: 100% !important;
+        pointer-events: none; /* Esto hace que el video sea "invisible" a los clics */
+        user-select: none;
     }
 
 /* 3. EL FILTRO: Overlay oscuro */
