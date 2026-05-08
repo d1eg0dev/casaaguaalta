@@ -302,36 +302,6 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
     display: none;
 }
 
-/* --- RESPONSIVE SWITCH --- */
-
-@media (max-width: 768px) {
-    /* Ocultamos el de escritorio por completo */
-    .hero-desktop {
-        display: none !important;
-    }
-
-    /* Mostramos el de mobile */
-    .hero-mobile {
-        display: flex !important;
-        height: 100vh;
-        height: 100svh;
-        position: relative;
-        align-items: flex-end;
-        background: #000;
-    }
-
-    .hero-mobile-bg {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-    }
-
-    .hero-mobile-bg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* ¡ESTO es lo que hace que cubra todo sin deformarse! */
-    }
-}
 </style>
 </head>
 <body>
@@ -364,35 +334,18 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <!-- ══════════════ HOME ══════════════ -->
 <div class="page active" id="p-home">
 
-<section class="hero hero-desktop">
-   <div class="hero-vid">
-       <div id="yt-wrap"></div>
-   </div>
-   <div class="hero-overlay"></div>
-   <div class="hero-inner">
-       <span class="eyebrow">CAREYES · COSTALEGRE · MÉXICO</span>
-       <h1>Where Polo, Ocean, and <em>Home</em> Meet</h1>
-       <p>A private family villa — five suites, full staff...</p>
-       <div class="hero-btns">
-           <a href="#" class="btn btn-primary">EXPLORE THE HOUSE →</a>
-           <a href="#" class="btn btn-outline">INQUIRE</a>
-       </div>
-   </div>
-</section>
-
-<section class="hero hero-mobile">
-   <div class="hero-mobile-bg">
-       <img src="tu-imagen-de-fondo.jpg" alt="Casa Agua Alta">
-   </div>
-   <div class="hero-overlay"></div>
-   <div class="hero-inner">
-       <span class="eyebrow">CAREYES · MÉXICO</span>
-       <h1>Where Polo, Ocean, and <em>Home</em> Meet</h1>
-       <div class="hero-btns">
-           <a href="#" class="btn btn-primary">EXPLORE →</a>
-           <a href="#" class="btn btn-outline">INQUIRE</a>
-       </div>
-   </div>
+<section class="hero">
+<div class="hero-vid" id="yt-wrap"></div>
+<div class="hero-overlay"></div>
+<div class="hero-inner">
+<p class="eyebrow" style="color:var(--gold);opacity:0;transform:translateY(16px);animation:rise .7s .3s var(--out) forwards">Careyes · Costalegre · México</p>
+<h1 style="opacity:0;transform:translateY(20px);animation:rise .8s .5s var(--out) forwards">Where Polo, Ocean,<br>and <em>Home</em> Meet</h1>
+<p style="opacity:0;transform:translateY(16px);animation:rise .7s .7s var(--out) forwards">A private family villa — five suites, full staff, and a way of life shaped by polo, art, and the Pacific.</p>
+<div class="hero-btns" style="opacity:0;animation:rise .7s .9s var(--out) forwards">
+<a href="#" class="btn btn-f" onclick="go('house');return false">Explore the House →</a>
+<a href="#" class="btn btn-g" onclick="go('contact');return false">Inquire</a>
+</div>
+</div>
 </section>
 
 <!-- INTRO -->
