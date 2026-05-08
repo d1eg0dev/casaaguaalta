@@ -72,6 +72,13 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     /* El ancho y alto exactos se los dará tu script fitVideo() */
 }
 
+#yt-wrap iframe {
+    /* ... tus otras propiedades ... */
+    pointer-events: none; /* Esto hace que el video sea "invisible" a los clics */
+    user-select: none;
+}
+    
+
 /* 3. EL FILTRO: Overlay oscuro */
 .hero-overlay {
     position: absolute;
