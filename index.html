@@ -41,6 +41,8 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .mob-menu a:hover{color:var(--tinto)}
 
 /* ══ HERO ══ */
+.hero-vid{overflow:hidden}
+.hero-vid::after{content:'';position:absolute;top:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(28,28,28,.8),transparent);z-index:1;pointer-events:none}
 .hero {
     position: relative !important;
     height: 100vh !important; 
@@ -59,6 +61,8 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     z-index: 0;
     pointer-events: none;
 }
+
+.hero-vid iframe{position:absolute;top:50%;left:50%;min-width:100vw;min-height:100vh;width:177.77vh;height:56.25vw;transform:translate(-50%,-50%);border:none;pointer-events:none}
 #yt-wrap iframe {
     position: absolute !important;
     top: 50% !important;
@@ -291,7 +295,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 .stats,.cards{grid-template-columns:1fr}
 .suites-top,.suites-bot{grid-template-columns:1fr}
 .sd-grid{grid-template-columns:1fr;gap:32px}.sd-imgs{grid-template-columns:1fr}
-.masonry{columns:1}.ft-top{grid-template-columns:1fr;gap:24px}
+.masonry{columns:2;gap:6px}.ft-top{grid-template-columns:1fr;gap:24px}
 .pnav{flex-direction:column;gap:16px;text-align:center}
 .btns{flex-direction:column;align-items:flex-start}
 .form-l,.form-r{padding:40px 24px}
@@ -724,52 +728,16 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-function fitVideo() {
-  var wrap = document.getElementById('yt-wrap');
-  if (!wrap) return;
-
-  // El iframe lo crea la API dentro del wrap
-  var iframe = wrap.querySelector('iframe');
-  if (!iframe) return;
-
-  var W = wrap.offsetWidth;
-  var H = wrap.offsetHeight;
-
-  // Necesitamos cubrir el contenedor manteniendo ratio 16:9
-  // Si el contenedor es más "ancho" que 16:9 → anclar por ancho
-  // Si el contenedor es más "alto"  → anclar por alto
-  var ratio = 16 / 9;
-  var vidW, vidH;
-
-  if (W / H > ratio) {
-    // Contenedor más ancho que 16:9 → el ancho manda
-    vidW = W;
-    vidH = W / ratio;
-  } else {
-    // Contenedor más alto que 16:9 → el alto manda
-    vidH = H;
-    vidW = H * ratio;
-  }
-
-  // Añadir 20% extra para evitar bordes negros en resize
-  vidW = Math.ceil(vidW * 1.2);
-  vidH = Math.ceil(vidH * 1.2);
-
-  iframe.style.width  = vidW + 'px';
-  iframe.style.height = vidH + 'px';
-  iframe.style.position  = 'absolute';
-  iframe.style.top       = '50%';
-  iframe.style.left      = '50%';
-  iframe.style.transform = 'translate(-50%, -50%)';
-  iframe.style.border    = 'none';
-  iframe.style.pointerEvents = 'none';
+function fitVideo(){
+var w=document.querySelector('.hero');if(!w)return;
+var el=document.querySelector('#yt-wrap iframe');if(!el)return;
+var vw=w.offsetWidth,vh=w.offsetHeight;
+var nw,nh;
+if(vw/vh>16/9){nw=vw;nh=vw*9/16}else{nh=vh;nw=vh*16/9}
+el.style.width=nw+'px';el.style.height=nh+'px';
+el.style.position='absolute';el.style.top='50%';el.style.left='50%';
+el.style.transform='translate(-50%,-50%)';el.style.pointerEvents='none';el.style.border='none';
 }
-
-// Recalcular en resize y orientación (crítico en mobile)
-window.addEventListener('resize',           fitVideo);
-window.addEventListener('orientationchange', function() {
-  setTimeout(fitVideo, 300); // delay por el reflow del browser
-});
 // Ejecutar al cargar todo por si acaso
 window.addEventListener('load', fitVideo);
 // Nav scroll
