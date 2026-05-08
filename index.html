@@ -282,11 +282,28 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 .masonry{columns:1}.ft-top{grid-template-columns:1fr;gap:24px}
 .pnav{flex-direction:column;gap:16px;text-align:center}
 .btns{flex-direction:column;align-items:flex-start}
-.hero-inner{padding:0 20px 40px}
 .form-l,.form-r{padding:40px 24px}
-.hero-btns{flex-direction:column;gap:8px}
 .loc-grid{grid-template-columns:1fr}
 .mhero{height:32vh;min-height:260px}.mhero-c{padding:0 20px}
+    .hero {
+        height: 100vh !important;
+        height: 100svh !important; /* Para Safari en iPhone */
+    }
+    
+    .hero-inner {
+        padding: 0 20px 40px;
+        width: 100%;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* Asegura que el contenedor del video también mida el 100% */
+    .hero-vid {
+        height: 100% !important;
+    }
 }
 </style>
 </head>
