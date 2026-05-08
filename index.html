@@ -50,18 +50,29 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     align-items: flex-end;
 }
 
-/* 1. EL FONDO: Contenedor del video */
 .hero-vid {
-    position: relative; /* Cambiado a relative para que no rompa el Flexbox */
-    inset: 0; /* Lo estira a los 4 bordes (top, right, bottom, left: 0) */
+    /* CAMBIO CLAVE: Debe ser absolute para flotar detrás del texto */
+    position: absolute; 
+    
+    /* Inset solo funciona con position absolute o fixed */
+    inset: 0; 
+    
     width: 100%;
     height: 100%;
-    z-index: 0; /* Capa más baja */
-    background: var(--dark); 
+    z-index: 0;
+    background: var(--dark);
     pointer-events: none;
-    top: 50%;
-    left: 50%;
-    translate: (-50%,-50%);
+    border: none;
+    
+    /* Eliminamos el translate de aquí: 
+       El centrado se hace en el IFRAME interno, no en el contenedor */
+}
+
+.hero-vid iframe {
+    position: absolute;
+    transform: translate(-50%, -50%); /* Aquí es donde hace la magia */
+    min-width: 100%;
+    min-height: 100%;
     border: none;
 }
 
