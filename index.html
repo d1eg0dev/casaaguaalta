@@ -48,9 +48,10 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     width: 100% !important;
     overflow: hidden !important;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-end; /* Alinea el texto al fondo */
+    background-color: #000;
 }
-
+    
 .hero-vid {
     position: absolute !important;
     inset: 0 !important;
@@ -324,6 +325,115 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 /* Por defecto, ocultamos el de mobile */
 .hero-mobile {
     display: none;
+}
+/* ══ HERO SECTION ══ */
+.hero {
+    position: relative !important;
+    height: 100vh !important; 
+    width: 100% !important;
+    overflow: hidden !important;
+    display: flex;
+    align-items: flex-end; /* Alinea el texto al fondo */
+    background-color: #000;
+}
+
+/* Ajuste de altura para Mobile */
+@media (max-width: 768px) {
+    .hero {
+        height: 85vh !important; /* Deja un margen del 15% abajo */
+    }
+}
+
+/* ══ VIDEO BACKGROUND ══ */
+.hero-vid {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-vid iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; 
+    height: 56.25vw; 
+    min-height: 100vh; 
+    min-width: 177.77vh; 
+    border: none;
+}
+
+/* Gradiente superior para lectura del logo */
+.hero-vid::after {
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:120px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+    z-index:1;
+}
+
+/* ══ CONTENIDO (CAPAS SUPERIORES) ══ */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2); /* Oscurece un poco el video para leer mejor */
+    z-index: 1;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    /* Padding responsivo: Arriba | Derecha | Abajo | Izquierda */
+    padding: 0 80px 100px 80px; 
+}
+
+/* Ajuste de Padding para Mobile */
+@media (max-width: 768px) {
+    .hero-inner {
+        padding: 0 30px 60px 30px; /* Más aire a los lados y abajo en móvil */
+    }
+}
+
+/* ══ TIPOGRAFÍA ══ */
+.hero-inner .eyebrow {
+    font-family: var(--font-sans); /* Asegúrate de tener estas variables o cámbialas por sans-serif */
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.hero-inner h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Tamaño fluido entre móvil y desktop */
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.hero-inner h1 em {
+    font-style: italic;
+    font-family: var(--font-serif); /* Cambia a serif si la tienes */
+}
+
+.hero-inner p:not(.eyebrow) {
+    max-width: 500px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+}
+
+/* ══ BOTONES ══ */
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 </style>
