@@ -384,12 +384,38 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
     z-index: 1;
 }
 
+/* ══ CONTENIDO HERO (ESCRITORIO Y GENERAL) ══ */
 .hero-inner {
     position: relative;
     z-index: 2;
     width: 100%;
-    /* Padding responsivo: Arriba | Derecha | Abajo | Izquierda */
+    /* 1. Controlamos el ancho máximo para que el texto no toque los bordes en monitores grandes */
+    max-width: 1440px; 
+    margin: 0 auto; /* Centra el contenedor del contenido */
+    
+    /* 2. Ajustamos los márgenes: 0 arriba, 80px a los lados, 100px abajo */
     padding: 0 80px 100px 80px; 
+    
+    /* Asegura que el contenido se alinee a la izquierda dentro del max-width */
+    box-sizing: border-box;
+}
+
+/* Ajuste específico para los textos internos */
+.hero-inner h1 {
+    max-width: 900px; /* Evita que el título se rompa en líneas muy largas */
+    margin-bottom: 1.5rem;
+}
+
+.hero-inner p:not(.eyebrow) {
+    max-width: 550px; /* Mantiene el párrafo legible y compacto como en tu captura */
+    margin-bottom: 2.5rem;
+}
+
+/* ══ AJUSTES RESPONSIVOS (MOBILE) ══ */
+@media (max-width: 768px) {
+    .hero {
+        height: 85vh !important; /* Mantiene el margen inferior en móvil */
+    }
 }
 
 /* Ajuste de Padding para Mobile */
@@ -502,7 +528,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <h2 class="h2 h2-w rv">A Villa Designed for <em>Living Well</em></h2>
 <div class="stats rv">
 <div class="stat"><div class="stat-n">5</div><div class="stat-l">Private Suites</div></div>
-<div class="stat"><div class="stat-n">20+</div><div class="stat-l">Staff Members</div></div>
+<div class="stat"><div class="stat-n">2</div><div class="stat-l">Prvaite Pools</div></div>
 <div class="stat"><div class="stat-n">3 mi</div><div class="stat-l">To Polo Fields</div></div>
 <div class="stat"><div class="stat-n">1968</div><div class="stat-l">Careyes Founded</div></div>
 </div>
