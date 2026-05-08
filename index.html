@@ -703,79 +703,93 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 
 <!-- ══════════════ JAVASCRIPT ══════════════ -->
 <script>
-// YouTube API
-var tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-document.head.appendChild(tag);
+// ── YouTube Hero — Mobile-proof fit ─────────────────────
+(function() {
+  var TAG = document.createElement('script');
+  TAG.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(TAG);
+})();
 
 var ytPlayer;
 
 function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('yt-wrap', {
-        videoId: 'v4bqQeNuN4c',
-        playerVars: {
-            autoplay: 1,
-            mute: 1,
-            controls: 0,
-            loop: 1,
-            playlist: 'v4bqQeNuN4c',
-            rel: 0,
-            showinfo: 0,
-            modestbranding: 1,
-            playsinline: 1, // Obligatorio para que funcione en iOS/Android
-            enablejsapi: 1
-        },
-        events: {
-            onReady: function(e) {
-                e.target.mute();
-                e.target.playVideo();
-                fitVideo();
-            },
-            onStateChange: function(e) {
-                // Forzar el loop si YouTube decide detenerse
-                if (e.data === YT.PlayerState.ENDED) {
-                    ytPlayer.playVideo();
-                }
-            }
+  ytPlayer = new YT.Player('yt-wrap', {
+    videoId: 'v4bqQeNuN4c',
+    playerVars: {
+      autoplay: 1,
+      mute: 1,
+      loop: 1,
+      playlist: 'v4bqQeNuN4c',
+      controls: 0,
+      showinfo: 0,
+      rel: 0,
+      iv_load_policy: 3,
+      modestbranding: 1,
+      playsinline: 1,       // crítico en iOS
+      enablejsapi: 1
+    },
+    events: {
+      onReady: function(e) {
+        e.target.mute();
+        e.target.playVideo();
+        fitVideo();
+      },
+      onStateChange: function(e) {
+        // Si el video se pausa (ej. tab oculto), re-play
+        if (e.data === YT.PlayerState.PAUSED) {
+          e.target.playVideo();
         }
-    });
+      }
+    }
+  });
 }
 
 function fitVideo() {
-    var container = document.querySelector('.hero');
-    var iframe = document.querySelector('#yt-wrap iframe');
-    
-    if (!container || !iframe) return;
+  var wrap = document.getElementById('yt-wrap');
+  if (!wrap) return;
 
-    var containerW = container.offsetWidth;
-    var containerH = container.offsetHeight;
-    var videoAspectRatio = 16 / 9;
-    var containerAspectRatio = containerW / containerH;
+  // El iframe lo crea la API dentro del wrap
+  var iframe = wrap.querySelector('iframe');
+  if (!iframe) return;
 
-    // Aumentamos un 1.2 (20%) extra para asegurar que los bordes negros
-    // de la interfaz de YouTube queden fuera de la pantalla.
-    var scale = 1.2; 
+  var W = wrap.offsetWidth;
+  var H = wrap.offsetHeight;
 
-    if (containerAspectRatio > videoAspectRatio) {
-        // Pantalla ancha (Desktop)
-        iframe.style.width = (containerW * scale) + 'px';
-        iframe.style.height = ((containerW / videoAspectRatio) * scale) + 'px';
-    } else {
-        // Pantalla alta (Mobile Portrait) - Aquí es donde fallaba
-        iframe.style.width = ((containerH * videoAspectRatio) * scale) + 'px';
-        iframe.style.height = (containerH * scale) + 'px';
-    }
+  // Necesitamos cubrir el contenedor manteniendo ratio 16:9
+  // Si el contenedor es más "ancho" que 16:9 → anclar por ancho
+  // Si el contenedor es más "alto"  → anclar por alto
+  var ratio = 16 / 9;
+  var vidW, vidH;
 
-    // Centrado absoluto impecable
-    iframe.style.position = 'absolute';
-    iframe.style.top = '50%';
-    iframe.style.left = '50%';
-    iframe.style.transform = 'translate(-50%, -50%)';
+  if (W / H > ratio) {
+    // Contenedor más ancho que 16:9 → el ancho manda
+    vidW = W;
+    vidH = W / ratio;
+  } else {
+    // Contenedor más alto que 16:9 → el alto manda
+    vidH = H;
+    vidW = H * ratio;
+  }
+
+  // Añadir 20% extra para evitar bordes negros en resize
+  vidW = Math.ceil(vidW * 1.2);
+  vidH = Math.ceil(vidH * 1.2);
+
+  iframe.style.width  = vidW + 'px';
+  iframe.style.height = vidH + 'px';
+  iframe.style.position  = 'absolute';
+  iframe.style.top       = '50%';
+  iframe.style.left      = '50%';
+  iframe.style.transform = 'translate(-50%, -50%)';
+  iframe.style.border    = 'none';
+  iframe.style.pointerEvents = 'none';
 }
 
-// Escuchar cambios de tamaño y rotación de pantalla
-window.addEventListener('resize', fitVideo);
-window.addEventListener('orientationchange', () => setTimeout(fitVideo, 300));
+// Recalcular en resize y orientación (crítico en mobile)
+window.addEventListener('resize',           fitVideo);
+window.addEventListener('orientationchange', function() {
+  setTimeout(fitVideo, 300); // delay por el reflow del browser
+});
 // Ejecutar al cargar todo por si acaso
 window.addEventListener('load', fitVideo);
 // Nav scroll
