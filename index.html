@@ -122,9 +122,58 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 
 /* 3. Asegurar que tu overlay y contenido queden arriba */
 .hero-overlay,
+/* ══ HERO INNER: AJUSTE EDITORIAL ══ */
 .hero-inner {
-  position: relative;
-  z-index: 2; /* Esto los pone por encima del video */
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1600px; /* Un poco más amplio para permitir el aire a la izquierda */
+    margin: 0 auto;
+    
+    /* EL SECRETO: Aumentamos el padding izquierdo y el inferior significativamente */
+    /* Arriba (0) | Derecha (80px) | Abajo (140px) | Izquierda (120px) */
+    padding: 0 80px 140px 120px; 
+    
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Asegura que el contenido empuje desde abajo */
+}
+
+/* Ajuste de los elementos internos para que no se estiren */
+.hero-inner .eyebrow {
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-inner h1 {
+    max-width: 850px; /* Título compacto */
+    margin-bottom: 2rem;
+    font-size: 4.8rem; /* Un poco más grande para llenar el espacio con elegancia */
+}
+
+.hero-inner p:not(.eyebrow) {
+    max-width: 480px; /* Párrafo estrecho tipo columna de revista */
+    margin-bottom: 3.5rem;
+    font-weight: 300;
+}
+
+/* ══ REAJUSTE PARA MÓVIL (Para no perder lo que ya arreglamos) ══ */
+@media (max-width: 1024px) {
+    .hero-inner {
+        padding: 0 60px 100px 80px; /* Reducción gradual para tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-inner {
+        padding: 0 35px 60px 35px; /* Lo que ya te funcionaba en móvil */
+        text-align: left;
+    }
+    
+    .hero-inner h1 {
+        font-size: 2.8rem;
+    }
 }
 /* ══ TIPOGRAFÍA Y ESTILOS (Sin cambios) ══ */
 .hero .eyebrow { color: var(--gold); }
@@ -528,7 +577,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <h2 class="h2 h2-w rv">A Villa Designed for <em>Living Well</em></h2>
 <div class="stats rv">
 <div class="stat"><div class="stat-n">5</div><div class="stat-l">Private Suites</div></div>
-<div class="stat"><div class="stat-n">2</div><div class="stat-l">Prvaite Pools</div></div>
+<div class="stat"><div class="stat-n">2</div><div class="stat-l">Private Pools</div></div>
 <div class="stat"><div class="stat-n">3 mi</div><div class="stat-l">To Polo Fields</div></div>
 <div class="stat"><div class="stat-n">1968</div><div class="stat-l">Careyes Founded</div></div>
 </div>
