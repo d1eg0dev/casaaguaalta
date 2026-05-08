@@ -42,8 +42,34 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 
 /* ══ HERO ══ */
 .hero{position:relative;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:flex-end}
-.hero-vid{position:absolute;inset:0;background:var(--dark)}
-.hero-vid iframe{position:absolute;top:50%;left:50%;width:300vw;height:300vh;transform:translate(-50%,-50%);border:none;pointer-events:none}
+.hero-vid {
+    position: relative;
+    overflow: hidden;
+    height: 100vh; /* Ajusta a 100svh si quieres evitar saltos en mobile */
+    background: var(--dark); /* Color de fondo mientras carga el video */
+}
+
+/* El elemento interno que cubre todo el espacio */
+.hero-vid-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+.hero-vid iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Quitamos el 100% fijo para que el JS haga su trabajo */
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+    /* Evitamos que se vea nada fuera del contenedor */
+    object-fit: cover; 
+}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,28,28,.55) 0%,rgba(28,28,28,.2) 50%,rgba(28,28,28,.6) 100%)}
 .hero-inner{position:relative;z-index:2;padding:0 48px 64px;max-width:700px}
 .hero .eyebrow{color:var(--gold)}
@@ -625,26 +651,76 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <!-- ══════════════ JAVASCRIPT ══════════════ -->
 <script>
 // YouTube API
-var tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.appendChild(tag);
-var ytPlayer;
-function onYouTubeIframeAPIReady(){
-ytPlayer=new YT.Player('yt-wrap',{
-videoId:'v4bqQeNuN4c',
-playerVars:{autoplay:1,mute:1,controls:0,loop:1,playlist:'v4bqQeNuN4c',rel:0,showinfo:0,modestbranding:1,playsinline:1,enablejsapi:1,origin:location.origin},
-events:{onReady:function(e){e.target.mute();e.target.playVideo();fitVideo()},onStateChange:function(e){if(e.data===YT.PlayerState.ENDED)ytPlayer.playVideo()}}
-});
-}
-function fitVideo(){
-var w=document.querySelector('.hero');if(!w)return;
-var el=document.querySelector('#yt-wrap iframe');if(!el)return;
-var vw=w.offsetWidth,vh=w.offsetHeight;
-if(vw/vh>16/9){el.style.width=vw+'px';el.style.height=vw/16*9+'px'}
-else{el.style.height=vh+'px';el.style.width=vh*16/9+'px'}
-el.style.position='absolute';el.style.top='50%';el.style.left='50%';el.style.transform='translate(-50%,-50%)';
-el.style.pointerEvents='none';el.style.border='none';
-}
-window.addEventListener('resize',fitVideo);
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
 
+var ytPlayer;
+
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('yt-wrap', {
+        videoId: 'v4bqQeNuN4c',
+        playerVars: {
+            autoplay: 1,
+            mute: 1,
+            controls: 0,
+            loop: 1,
+            playlist: 'v4bqQeNuN4c',
+            rel: 0,
+            showinfo: 0,
+            modestbranding: 1,
+            playsinline: 1, // Obligatorio para que funcione en iOS/Android
+            enablejsapi: 1
+        },
+        events: {
+            onReady: function(e) {
+                e.target.mute();
+                e.target.playVideo();
+                fitVideo();
+            },
+            onStateChange: function(e) {
+                // Forzar el loop si YouTube decide detenerse
+                if (e.data === YT.PlayerState.ENDED) {
+                    ytPlayer.playVideo();
+                }
+            }
+        }
+    });
+}
+
+function fitVideo() {
+    // Buscamos el contenedor padre (asegúrate que sea .hero-vid)
+    var container = document.querySelector('.hero-vid');
+    var iframe = document.querySelector('#yt-wrap iframe');
+    
+    if (!container || !iframe) return;
+
+    var containerW = container.offsetWidth;
+    var containerH = container.offsetHeight;
+    var aspectRatio = 16 / 9;
+
+    // Lógica "Cover": llenar el espacio sin dejar franjas
+    if (containerW / containerH > aspectRatio) {
+        // Pantalla ancha (Desktop)
+        iframe.style.width = containerW + 'px';
+        iframe.style.height = (containerW / aspectRatio) + 'px';
+    } else {
+        // Pantalla alta (Mobile)
+        iframe.style.width = (containerH * aspectRatio) + 'px';
+        iframe.style.height = containerH + 'px';
+    }
+}
+
+// Eventos para recalcular el tamaño
+window.addEventListener('resize', fitVideo);
+
+// En mobile, el cambio de orientación a veces tarda unos ms en reportar el tamaño real
+window.addEventListener('orientationchange', function() {
+    setTimeout(fitVideo, 200);
+});
+
+// Ejecutar al cargar todo por si acaso
+window.addEventListener('load', fitVideo);
 // Nav scroll
 var hdr=document.getElementById('hdr');
 window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
