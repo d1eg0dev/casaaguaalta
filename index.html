@@ -39,6 +39,14 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .mob-menu.active{display:flex}
 .mob-menu a{font-family:var(--serif);font-size:1.6rem;color:var(--txt);transition:color .3s}
 .mob-menu a:hover{color:var(--tinto)}
+.hero{position:relative;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-media{position:absolute;inset:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,28,28,.55) 0%,rgba(28,28,28,.2) 50%,rgba(28,28,28,.6) 100%)}
+.hero-inner{position:relative;z-index:2;padding:0 48px 64px;max-width:700px}
+.hero-carousel{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2s ease}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover}
 
 /* ══ HERO ══ */
 /* ══ HERO ══ */
@@ -52,73 +60,6 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     background-color: #000;
 }
     
-.hero-vid {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 0;
-    pointer-events: none;
-    background: #000; /* Fondo negro por si el video tarda en cargar */
-}
-
-/* AQUÍ ESTÁ EL CAMBIO IMPORTANTE: */
-.hero-vid iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    /* El truco para cubrir todo el espacio sin importar el tamaño de pantalla */
-    width: 100vw; 
-    height: 56.25vw; /* Relación 16:9 basada en el ancho */
-    
-    min-height: 100vh; 
-    min-width: 177.77vh; /* Relación 16:9 basada en el alto */
-    
-    border: none;
-    pointer-events: none;
-}
-
-/* Efecto de degradado superior para que el logo/menú se vea bien */
-.hero-vid::after {
-    content:'';
-    position:absolute;
-    top:0;left:0;right:0;
-    height:120px; /* Un poco más alto para mejor visibilidad */
-    background:linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
-    z-index:1;
-    pointer-events:none;
-}
-#yt-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-  background-color: #000;
-}
-
-/* 2. EL TRUCO CSS PARA EL IFRAME */
-/* Atacamos el iframe que YouTube crea automáticamente dentro de #yt-wrap */
-#yt-wrap iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* Nadie puede pausarlo haciendo clic */
-  border: none;
-  
-  /* Forzar aspecto 16:9 basado en el ancho */
-  width: 100vw;
-  height: 56.25vw;
-  
-  /* Forzar que nunca sea más pequeño que el alto (para celulares) */
-  min-height: 100vh;
-  min-width: 177.77vh; 
-}
 /* ══ HERO INNER: AJUSTE EDITORIAL ══ */
 .hero-inner {
     position: relative;
@@ -386,38 +327,6 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
     .hero {
         height: 85vh !important; /* Deja un margen del 15% abajo */
     }
-}
-
-/* ══ VIDEO BACKGROUND ══ */
-.hero-vid {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.hero-vid iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw; 
-    height: 56.25vw; 
-    min-height: 100vh; 
-    min-width: 177.77vh; 
-    border: none;
-}
-
-/* Gradiente superior para lectura del logo */
-.hero-vid::after {
-    content:'';
-    position:absolute;
-    top:0; left:0; right:0;
-    height:120px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-    z-index:1;
 }
 
 /* ══ CONTENIDO (CAPAS SUPERIORES) ══ */
@@ -894,56 +803,6 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 
 <!-- ══════════════ JAVASCRIPT ══════════════ -->
 <script>
-// ── YouTube Hero — Mobile-proof fit ─────────────────────
-// 1. Cargar la API de YouTube
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-
-// 2. Esta función se ejecuta cuando la API está lista
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('ytplayer', { // Busca el ID "ytplayer" en tu HTML
-    videoId: 'v4bqQeNuN4c',
-    playerVars: {
-      'autoplay': 1,
-      'mute': 1,      // Obligatorio para que el autoplay funcione en navegadores
-      'controls': 0,
-      'loop': 1,
-      'playlist': 'v4bqQeNuN4c', // Necesario para que el loop de YT funcione
-      'rel': 0,
-      'showinfo': 0,
-      'modestbranding': 1,
-      'playsinline': 1,
-      'enablejsapi': 1
-    },
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-// 3. Cuando el reproductor está listo
-function onPlayerReady(event) {
-  event.target.mute();
-  event.target.playVideo();
-  
-  // Sugerir alta calidad
-  if (event.target.setPlaybackQuality) {
-    event.target.setPlaybackQuality('hd1080');
-  }
-}
-
-// 4. Asegurar el loop infinito
-function onPlayerStateChange(event) {
-  if (event.data === YT.PlayerState.ENDED) {
-    player.playVideo();
-  }
-}
-    
 // Nav scroll
 var hdr=document.getElementById('hdr');
 window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
