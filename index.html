@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 /* ══ RESET & VARS ══ */
-:root{--tinto:#722F37;--tinto-dark:#5C252C;--tinto-light:#8B3A44;--gold:#C9A355;--gold-light:#D4B56E;--cream:#FBF9F6;--cream-dk:#F2EDE7;--white:#FFF;--dark:#1C1C1C;--dark-lt:#2D2D2D;--txt:#1C1C1C;--txt-m:#5A5550;--txt-l:#8A837C;--txt-w:#F5F2EE;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--ease:cubic-bezier(.25,.46,.45,.94);--out:cubic-bezier(.16,1,.3,1)}
+:root{--tinto:#1C1C1C;--tinto-dark:#111111;--tinto-light:#333333;--gold:#C9A355;--gold-light:#D4B56E;--cream:#FFFFFF;--cream-dk:#F5F2EE;--white:#FFF;--dark:#1C1C1C;--dark-lt:#2D2D2D;--txt:#1C1C1C;--txt-m:#5A5550;--txt-l:#8A837C;--txt-w:#F5F2EE;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--ease:cubic-bezier(.25,.46,.45,.94);--out:cubic-bezier(.16,1,.3,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:var(--sans);color:var(--txt);background:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -243,7 +243,7 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .f-ok p{font-size:.8rem;color:var(--txt-m)}
 
 /* ══ MINI HERO ══ */
-.mhero{height:42vh;min-height:320px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
+.mhero{height:60vh;min-height:450px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center}
 .mhero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .mhero-ov{position:absolute;inset:0;background:rgba(28,28,28,.4)}
 .mhero-c{position:relative;z-index:2;padding:0 48px}
@@ -306,7 +306,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 .btns{flex-direction:column;align-items:flex-start}
 .form-l,.form-r{padding:40px 24px}
 .loc-grid{grid-template-columns:1fr}
-.mhero{height:32vh;min-height:260px}.mhero-c{padding:0 20px}
+.mhero{height:32vh;min-height:340px}.mhero-c{padding:0 20px}
 /* Por defecto, ocultamos el de mobile */
 .hero-mobile {
     display: none;
@@ -461,7 +461,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="hero-inner">
 <p class="eyebrow" style="color:var(--gold);opacity:0;transform:translateY(16px);animation:rise .7s .3s var(--out) forwards">Careyes · Costalegre · México</p>
 <h1 style="opacity:0;transform:translateY(20px);animation:rise .8s .5s var(--out) forwards">Where Polo, Ocean,<br>and <em>Home</em> Meet</h1>
-<p style="opacity:0;transform:translateY(16px);animation:rise .7s .7s var(--out) forwards">A private family villa — five suites, full staff, and a way of life shaped by polo, art, and the Pacific.</p>
+<p style="opacity:0;transform:translateY(16px);animation:rise .7s .7s var(--out) forwards">A private family villa now open to guests. Two pools, full staff, and views to Copa del Sol and the lagoon — five minutes on foot to Playa Rosa. A way of life shaped by polo, art, and the Pacific.</p>
 <div class="hero-btns" style="opacity:0;animation:rise .7s .9s var(--out) forwards">
 <a href="#" class="btn btn-f" onclick="go('house');return false">Explore the House →</a>
 <a href="#" class="btn btn-g" onclick="go('contact');return false">Inquire</a>
@@ -486,15 +486,15 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <h2 class="h2 h2-w rv">A Villa Designed for <em>Living Well</em></h2>
 <div class="stats rv">
 <div class="stat"><div class="stat-n">5</div><div class="stat-l">Private Suites</div></div>
-<div class="stat"><div class="stat-n">2</div><div class="stat-l">Private Pools</div></div>
-<div class="stat"><div class="stat-n">4 km</div><div class="stat-l">To Polo Fields</div></div>
-<div class="stat"><div class="stat-n">1968</div><div class="stat-l">Careyes Founded</div></div>
+<div class="stat"><div class="stat-n">2</div><div class="stat-l">Swimming Pools</div></div>
+<div class="stat"><div class="stat-n">5 min</div><div class="stat-l">Walk to Playa Rosa</div></div>
+<div class="stat"><div class="stat-n">20+</div><div class="stat-l">Staff Members</div></div>
 </div>
 <div class="cards rv">
-<div class="card"><div class="card-icon">◎</div><h3>Full Staff</h3><p>Private chef, butler, housekeeping. Every detail, 24/7.</p><a href="#" onclick="go('house');return false">Learn More →</a></div>
-<div class="card"><div class="card-icon">◇</div><h3>Private Chef</h3><p>Seasonal menus, local ingredients. Breakfast always included.</p><a href="#" onclick="go('gastro');return false">Gastronomy →</a></div>
-<div class="card"><div class="card-icon">△</div><h3>Polo Access</h3><p>Three miles to Costa Careyes Polo Club. Matches, lessons, Copa Agua Alta.</p><a href="#" onclick="go('polo');return false">Discover Polo →</a></div>
-<div class="card"><div class="card-icon">▽</div><h3>Ocean & Coast</h3><p>Nine miles of Pacific. Swimming, surfing, boat trips, hidden coves.</p><a href="#" onclick="go('exp');return false">Experiences →</a></div>
+<div class="card"><div class="card-icon">◎</div><h3>Two Pools</h3><p>A main infinity pool and a private Moroccan-style plunge pool. Both with Pacific views.</p><a href="#" onclick="go('house');return false">The House →</a></div>
+<div class="card"><div class="card-icon">◇</div><h3>Playa Rosa</h3><p>Five minutes walking to Careyes' iconic beach club. Ceviche, ocean, and the best social scene on the coast.</p><a href="#" onclick="go('exp');return false">Experiences →</a></div>
+<div class="card"><div class="card-icon">△</div><h3>The Views</h3><p>Copa del Sol visible from the house. Lagoon views from Loco and Cascada terraces. Sunsets every evening.</p><a href="#" onclick="go('house');return false">Discover →</a></div>
+<div class="card"><div class="card-icon">▽</div><h3>Full Staff</h3><p>Private chef, butler, housekeeping. Breakfast included. In-house dining on request. Every detail, 24/7.</p><a href="#" onclick="go('gastro');return false">Gastronomy →</a></div>
 </div>
 </div></section>
 
@@ -521,9 +521,8 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="suites-bot">
 <div class="s-card rv" onclick="go('fujo')"><img src="images/compressed_DSC03136.jpg" alt="Fujo"><div class="info"><h3>Cascada</h3><span>King · Garden View · From $280</span></div></div>
 <div class="s-card rv" onclick="go('pinkloco')"><img src="images/compressed_DSC03001.jpg" alt="Pink Loco"><div class="info"><h3>Loco</h3><span>King · Garden View · From $280</span></div></div>
-<div class="s-card rv" onclick="go('yellow')"><img src="images/compressed_DSC03250.jpg" alt="Yellow"><div class="info"><h3>Refugio</h3><span>King · Ocean View · From $280</span></div></div>
-</div>
-<div style="text-align:center;margin-top:36px" class="rv"><a href="#" class="btn btn-f" onclick="go('suites');return false">View All Suites →</a></div>
+<div class="s-card rv" onclick="go('yellow')"><img src="images/compressed_DSC03250.jpg" alt="Refugio" style="filter:brightness(.4)"><div class="info"><h3>Refugio</h3><span>King · Ocean View · From $280</span></div></div>
+    <div style="text-align:center;margin-top:36px" class="rv"><a href="#" class="btn btn-f" onclick="go('suites');return false">View All Suites →</a></div>
 </section>
 
 <!-- LETTER -->
@@ -576,8 +575,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="suites-bot">
 <div class="s-card rv" onclick="go('fujo')"><img src="images/compressed_DSC03136.jpg" alt="Fujo"><div class="info"><h3>Cascada</h3><span>King · Garden View</span></div></div>
 <div class="s-card rv" onclick="go('pinkloco')"><img src="images/compressed_DSC03001.jpg" alt="Pink Loco"><div class="info"><h3>Loco</h3><span>King · Garden View</span></div></div>
-<div class="s-card rv" onclick="go('yellow')"><img src="images/compressed_DSC03250.jpg" alt="Yellow"><div class="info"><h3>Refugio</h3><span>King · Ocean View</span></div></div>
-</div>
+<div class="s-card rv" style="pointer-events:none"><div style="position:relative"><img src="images/compressed_DSC03250.jpg" alt="Refugio" style="filter:brightness(.4)"><div class="info"><h3>Refugio</h3><span>Coming Soon</span></div></div></div></div>
 <div style="text-align:center;margin-top:40px" class="rv"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire About Availability →</a></div>
 <div class="pnav"><a href="#" onclick="go('house');return false"><span>Previous</span><strong>← The House</strong></a><a href="#" onclick="go('exp');return false"><span>Next</span><strong>Experiences →</strong></a></div>
 </div></section>
@@ -586,11 +584,11 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <!-- SUITE DETAILS -->
 <div class="page" id="p-bungalow"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC02563.jpg" alt="Bungalow"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Bungalow</p><h2 class="h2">A Tropical Haven of <em>Warmth and Wood</em></h2><p class="body" style="margin-top:16px">The largest and most private suite. Soaring palapa ceilings, rich wooden details, and art-filled walls.</p><p class="body" style="margin-top:10px">King Bed · Ocean View · Private Terrace · Open-Air Bath · AC</p><p class="body"><strong>From $280 USD per night</strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC02623.jpg" alt=""></div><div><img src="images/compressed_DSC02756.jpg" alt=""></div><div><img src="images/compressed_DSC02850.jpg" alt=""></div><div><img src="images/compressed_DSC02876.jpg" alt=""></div></div></div></div></section></div>
 
-<div class="page" id="p-cascada"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC03346.jpg" alt="Cascada"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Cascada</p><h2 class="h2">Cool Blue, <em>Ocean Calm</em></h2><p class="body" style="margin-top:16px">Soft blue tones, handcrafted textiles, arched doorways. Signature tiled jacuzzi en-suite.</p><p class="body" style="margin-top:10px">King Bed · Ocean View · Private Terrace · En-Suite · AC</p><p class="body"><strong>From $280 USD per night</strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC03363.jpg" alt=""></div><div><img src="images/compressed_DSC03423.jpg" alt=""></div><div><img src="images/compressed_DSC03558.jpg" alt=""></div><div><img src="images/compressed_DSC03583.jpg" alt=""></div></div></div></div></section></div>
+<div class="page" id="p-cascada"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC03346.jpg" alt="Cascada"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Cascada</p><h2 class="h2">Cool Blue, <em>Ocean Calm</em></h2><p class="body" style="margin-top:16px">Soft blue tones, handcrafted textiles, arched doorways. Signature tiled jacuzzi en-suite. The terrace offers direct views of the Careyes lagoon.</p><p class="body" style="margin-top:10px">King Bed · Ocean View · Private Terrace · En-Suite · AC</p><p class="body"><strong>From $280 USD per night</strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC03363.jpg" alt=""></div><div><img src="images/compressed_DSC03423.jpg" alt=""></div><div><img src="images/compressed_DSC03558.jpg" alt=""></div><div><img src="images/compressed_DSC03583.jpg" alt=""></div></div></div></div></section></div>
 
 <div class="page" id="p-fujo"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC03136.jpg" alt="Fujo"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Fujo</p><h2 class="h2">Sky Blue, <em>Art-Filled Serenity</em></h2><p class="body" style="margin-top:16px">A quiet retreat in soft sky blue, curated artworks, reading nook, tropical garden views.</p><p class="body" style="margin-top:10px">King Bed · Garden View · Private Terrace · En-Suite · AC</p><p class="body"><strong>From $280 USD per night</strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC03180.jpg" alt=""></div><div><img src="images/compressed_DSC03213.jpg" alt=""></div><div><img src="images/compressed_DSC03237.jpg" alt=""></div><div><img src="images/compressed_DSC03327.jpg" alt=""></div></div></div></div></section></div>
 
-<div class="page" id="p-pinkloco"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC03001.jpg" alt="Pink Loco"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Pink Loco</p><h2 class="h2">Bold, Vibrant, <em>Unapologetically Alive</em></h2><p class="body" style="margin-top:16px">A joyful explosion of Mexican pink. Hand-painted details, colorful textiles, the most photographed suite.</p><p class="body" style="margin-top:10px">King Bed · Garden View · Private Terrace · En-Suite · AC</p><p class="body"><strong>From $280 USD per night</strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC03027.jpg" alt=""></div><div><img src="images/compressed_DSC03152.jpg" alt=""></div><div><img src="images/compressed_DSC04186.jpg" alt=""></div><div><img src="images/compressed_DSC04482.jpg" alt=""></div></div></div></div></section></div>
+<div class="page" id="p-pinkloco"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC03001.jpg" alt="Pink Loco"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Pink Loco</p><h2 class="h2">Bold, Vibrant, <em>Unapologetically Alive</em></h2><p class="body" style="margin-top:16px">A joyful explosion of Mexican pink. Hand-painted details, colorful textiles, the most photographed suite. Lagoon and Pacific views from the private terrace.</p><p class="body" style="margin-top:10px">King Bed · Garden View · Private Terrace · En-Suite · AC</p><p class="body"><strong>From $280 USD per night</strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC03027.jpg" alt=""></div><div><img src="images/compressed_DSC03152.jpg" alt=""></div><div><img src="images/compressed_DSC04186.jpg" alt=""></div><div><img src="images/compressed_DSC04482.jpg" alt=""></div></div></div></div></section></div>
 
 <div class="page" id="p-yellow"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC03250.jpg" alt="Yellow"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Yellow</p><h2 class="h2">Warm Light, <em>Golden Hours</em></h2><p class="body" style="margin-top:16px">Golden tones, traditional palapa ceiling, handcrafted furniture. Glows at sunset.</p><p class="body" style="margin-top:10px">King Bed · Ocean View · Private Terrace · En-Suite · AC</p><p class="body"><strong>From $280 USD per night</strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC03270.jpg" alt=""></div><div><img src="images/compressed_DSC03290.jpg" alt=""></div><div><img src="images/compressed_DSC02876.jpg" alt=""></div><div><img src="images/compressed_DSC02862.jpg" alt=""></div></div></div></div></section></div>
 
