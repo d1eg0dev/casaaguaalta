@@ -48,6 +48,13 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .hero-slide img{width:100%;height:100%;object-fit:cover}
 
 /* ══ HERO ══ */
+.hero-slide.mobile-alt{display:none}
+@media(max-width:768px){
+.hero-slide.desktop-only{display:none}
+.hero-slide.mobile-alt{display:block;position:absolute;inset:0;opacity:0;transition:opacity 2s ease}
+.hero-slide.mobile-alt.active{opacity:1}
+.hero-slide.mobile-alt img{object-position:center top}
+}
 /* ══ HERO ══ */
 .hero {
     position: relative !important;
@@ -449,11 +456,12 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <section class="hero">
 <div class="hero-media">
 <div class="hero-carousel" id="heroCarousel">
-<div class="hero-slide active"><img src="images/hero.jpg" alt="Casa Agua Alta"></div>
+<div class="hero-slide active desktop-only"><img src="images/hero.png" alt="Casa Agua Alta"></div>
 <div class="hero-slide"><img src="images/compressed_DSC02623.jpg" alt="Bungalow suite"></div>
 <div class="hero-slide"><img src="images/compressed_DSC03796.jpg" alt="Pacific coastline"></div>
 <div class="hero-slide"><img src="images/compressed_DSC03665.jpg" alt="Terrace"></div>
 <div class="hero-slide"><img src="images/e-copaaguaalta2018-vi2-1154-copia.jpg" alt="Polo"></div>
+<div class="hero-slide mobile-alt active"><img src="images/pools.jpg" alt="Casa Agua Alta" style="transform:rotate(90deg) scale(1.8);object-fit:cover"></div>
 </div>
 <div class="hero-overlay"></div>
 </div>
