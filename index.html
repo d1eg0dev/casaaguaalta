@@ -48,14 +48,6 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .hero-slide img{width:100%;height:100%;object-fit:cover}
 
 /* ══ HERO ══ */
-.hero-slide.mobile-alt{display:none}
-@media(max-width:768px){
-.hero-slide.desktop-only{display:none}
-.hero-slide.mobile-alt{display:block;position:absolute;inset:0;opacity:0;transition:opacity 2s ease}
-.hero-slide.mobile-alt.active{opacity:1}
-.hero-slide.mobile-alt img{object-position:center top}
-}
-/* ══ HERO ══ */
 .hero {
     position: relative !important;
     height: 100vh !important; 
@@ -456,12 +448,11 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <section class="hero">
 <div class="hero-media">
 <div class="hero-carousel" id="heroCarousel">
-<div class="hero-slide active desktop-only"><img src="images/hero.png" alt="Casa Agua Alta"></div>
+<div class="hero-slide active"><img src="images/hero.png" alt="Casa Agua Alta"></div>
 <div class="hero-slide"><img src="images/compressed_DSC02623.jpg" alt="Bungalow suite"></div>
 <div class="hero-slide"><img src="images/compressed_DSC03796.jpg" alt="Pacific coastline"></div>
 <div class="hero-slide"><img src="images/compressed_DSC03665.jpg" alt="Terrace"></div>
-<div class="hero-slide"><img src="images/e-copaaguaalta2018-vi2-1154-copia.jpg" alt="Polo"></div>
-<div class="hero-slide mobile-alt active"><img src="images/pools-mobile.jpg" alt="Casa Agua Alta"></div></div>
+<div class="hero-slide"><img src="images/e-copaaguaalta2018-vi2-1154-copia.jpg" alt="Polo"></div></div>
 <div class="hero-overlay"></div>
 </div>
 <div class="hero-inner">
@@ -572,6 +563,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="s-card rv" onclick="go('fujo')"><img src="images/compressed_DSC03136.jpg" alt="Fujo"><div class="info"><h3>Cascada</h3><span>King · Garden View</span></div></div>
 <div class="s-card rv" onclick="go('pinkloco')"><img src="images/compressed_DSC03001.jpg" alt="Pink Loco"><div class="info"><h3>Pink Loco</h3><span>King · Garden View</span></div></div>
 <div class="s-card rv" style="pointer-events:none"><img src="images/hero.png" alt="Refugio" style="filter:brightness(.4)"><div class="info"><h3>Refugio</h3><span>Photography Coming Soon</span></div></div>
+</div>
 <div style="text-align:center;margin-top:40px" class="rv"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire About Availability →</a></div>
 <div class="pnav"><a href="#" onclick="go('house');return false"><span>Previous</span><strong>← The House</strong></a><a href="#" onclick="go('exp');return false"><span>Next</span><strong>Experiences →</strong></a></div>
 </div></section>
