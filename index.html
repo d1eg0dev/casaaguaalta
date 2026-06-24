@@ -179,9 +179,18 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .sd-hero img{width:100%;height:100%;object-fit:cover}
 .sd-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-bottom:56px}
 .sd-imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.sd-imgs div{aspect-ratio:4/3;overflow:hidden;border-radius:4px}
+.sd-imgs div{aspect-ratio:16/10;overflow:hidden;border-radius:4px}
 .sd-imgs img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
 .sd-imgs div:hover img{transform:scale(1.04)}
+
+.suite-gallery{display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;margin-top:24px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+.suite-gallery::-webkit-scrollbar{height:4px}
+.suite-gallery::-webkit-scrollbar-track{background:var(--cream-dk)}
+.suite-gallery::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+.suite-gallery div{flex-shrink:0;width:340px;aspect-ratio:16/10;overflow:hidden;border-radius:4px;scroll-snap-align:start}
+.suite-gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.suite-gallery div:hover img{transform:scale(1.03)}
+@media(max-width:768px){.suite-gallery div{width:280px}}
 
 /* ══ LETTER ══ */
 .letter{max-width:680px;margin:0 auto;text-align:center}
@@ -565,7 +574,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 </div>
 
 <!-- SUITE DETAILS -->
-<div class="page" id="p-bungalow"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC02563.jpg" alt="Bungalow"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Ex-Baby</p><h2 class="h2">A Tropical Haven of <em>Warmth and Wood</em></h2><p class="body" style="margin-top:16px">The largest and most private suite. Soaring palapa ceilings, rich wooden details, and art-filled walls.</p><p class="body" style="margin-top:10px">King Bed · Ocean View · Private Terrace · Open-Air Bath · AC</p><p class="body"><strong>This suite is part of a full-house experience. <a href="#" onclick="go('contact');return false" style="color:var(--gold)">Inquire to book →</a></strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC02623.jpg" alt=""></div><div><img src="images/compressed_DSC02756.jpg" alt=""></div><div><img src="images/compressed_DSC02850.jpg" alt=""></div><div><img src="images/compressed_DSC02876.jpg" alt=""></div></div></div></div></section></div>
+<div class="page" id="p-bungalow"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC02563.jpg" alt="Bungalow"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Ex-Baby</p><h2 class="h2">A Tropical Haven of <em>Warmth and Wood</em></h2><p class="body" style="margin-top:16px">The largest and most private suite. Soaring palapa ceilings, rich wooden details, and art-filled walls.</p><p class="body" style="margin-top:10px">King Bed · Ocean View · Private Terrace · Open-Air Bath · AC</p><p class="body"><strong>This suite is part of a full-house experience. <a href="#" onclick="go('contact');return false" style="color:var(--gold)">Inquire to book →</a></strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="suite-gallery rv"><div><img src="images/compressed_DSC02623.jpg" alt=""></div><div><img src="images/compressed_DSC02756.jpg" alt=""></div><div><img src="images/compressed_DSC02850.jpg" alt=""></div><div><img src="images/compressed_DSC02876.jpg" alt=""></div></div></div></div></section></div>
 
 <div class="page" id="p-cascada"><div style="height:68px"></div><section class="sec"><div class="sd"><a href="#" class="btn btn-o" style="margin-bottom:28px" onclick="go('suites');return false">← All Suites</a><div class="sd-hero rv"><img src="images/compressed_DSC03346.jpg" alt="Cascada"></div><div class="sd-grid"><div class="rv"><p class="eyebrow">Bungalow</p><h2 class="h2">Cool Blue, <em>Ocean Calm</em></h2><p class="body" style="margin-top:16px">Soft blue tones, handcrafted textiles, arched doorways. Signature tiled jacuzzi en-suite. The terrace offers direct views of the Careyes lagoon.</p><p class="body" style="margin-top:10px">King Bed · Ocean View · Private Terrace · En-Suite · AC</p><p class="body"><strong>This suite is part of a full-house experience. <a href="#" onclick="go('contact');return false" style="color:var(--gold)">Inquire to book →</a></strong></p><div class="btns" style="justify-content:flex-start"><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire →</a></div></div><div class="sd-imgs rv"><div><img src="images/compressed_DSC03363.jpg" alt=""></div><div><img src="images/compressed_DSC03423.jpg" alt=""></div><div><img src="images/compressed_DSC03558.jpg" alt=""></div><div><img src="images/compressed_DSC03583.jpg" alt=""></div></div></div></div></section></div>
 
@@ -577,7 +586,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 
 <!-- ══════════════ EXPERIENCES ══════════════ -->
 <div class="page" id="p-exp">
-<div class="mhero"><img src="images/compressed_DSC04408.jpg" alt=""><div class="mhero-ov"></div><div class="mhero-c"><p class="eyebrow">Experiences</p><h2 class="h2">Days That Belong <em>to You</em></h2><p>No itinerary. Just possibilities.</p></div></div>
+<div class="mhero"><img src="images/compressed_DSC_2639.jpg" alt=""><div class="mhero-ov"></div><div class="mhero-c"><p class="eyebrow">Experiences</p><h2 class="h2">Days That Belong <em>to You</em></h2><p>No itinerary. Just possibilities.</p></div></div>
 
 <section class="sec bg-w"><div class="split">
 <div class="split-img rv"><img src="images/e-copaaguaalta2018-vi2-1154-copia.jpg" alt="Polo"></div>
