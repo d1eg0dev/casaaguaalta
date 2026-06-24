@@ -42,10 +42,6 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .hero-media{position:absolute;inset:0}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,28,28,.55) 0%,rgba(28,28,28,.2) 50%,rgba(28,28,28,.6) 100%)}
 .hero-inner{position:relative;z-index:2;padding:0 48px 64px;max-width:700px}
-.hero-carousel{position:absolute;inset:0}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2s ease}
-.hero-slide.active{opacity:1}
-.hero-slide img{width:100%;height:100%;object-fit:cover}
 
 /* ══ HERO ══ */
 .hero {
@@ -177,7 +173,7 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
 .sd{max-width:1200px;margin:0 auto}
 .sd-hero{aspect-ratio:21/9;overflow:hidden;border-radius:4px;margin-bottom:56px}
 .sd-hero img{width:100%;height:100%;object-fit:cover}
-.sd-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-bottom:56px}
+.sd-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start;margin-bottom:56px;max-width:720px}
 .sd-imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .sd-imgs div{aspect-ratio:16/10;overflow:hidden;border-radius:4px}
 .sd-imgs img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
@@ -456,12 +452,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 
 <section class="hero">
 <div class="hero-media">
-<div class="hero-carousel" id="heroCarousel">
-<div class="hero-slide active"><img src="images/hero.jpg" alt="Casa Agua Alta"></div>
-<div class="hero-slide"><img src="images/compressed_DSC02623.jpg" alt="Bungalow suite"></div>
-<div class="hero-slide"><img src="images/compressed_DSC03796.jpg" alt="Pacific coastline"></div>
-<div class="hero-slide"><img src="images/compressed_DSC03665.jpg" alt="Terrace"></div>
-<div class="hero-slide"><img src="images/e-copaaguaalta2018-vi2-1154-copia.jpg" alt="Polo"></div></div>
+<img src="images/compressed_DSC03743.jpg" alt="Casa Agua Alta" style="width:100%;height:100%;object-fit:cover">
 <div class="hero-overlay"></div>
 </div>
 <div class="hero-inner">
@@ -481,7 +472,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="split-txt rv">
 <p class="eyebrow">A Home Away from Home</p>
 <h2 class="h2">Casa Agua Alta Is Not a Hotel.<br>It Is a <em>Home.</em></h2>
-<p class="body drop">Casa Agua Alta is a private villa designed for those who value beauty, intention, and connection. A space where mornings unfold slowly, evenings stretch into golden horizons, and every stay feels deeply personal.</p>
+<p class="body drop">Casa Agua Alta is a private estate primarily available as a full-house rental for families, groups, and gatherings. When the calendar allows, individual suites are also available for guests seeking something unique. Set within Careyes' 35,000-acre reserve, the property features two swimming pools, including a private Moroccan-style plunge pool, panoramic terraces with views to Copa del Sol and the lagoon, and a dedicated staff of over twenty. Five minutes on foot to Playa Rosa. This is not a hotel. It is a home that opens its doors to those who appreciate beauty, intention, and connection.</p>
 <div class="btns"><a href="#" class="btn btn-o" onclick="go('house');return false">Discover the House →</a></div>
 </div>
 </div></section>
@@ -545,12 +536,12 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="page" id="p-house">
 <div class="mhero"><img src="images/compressed_DSC03672.jpg" alt=""><div class="mhero-ov"></div><div class="mhero-c"><p class="eyebrow">Casa Agua Alta</p><h2 class="h2">A Home Built for <em>Living</em></h2></div></div>
 <section class="sec bg-w"><div class="split">
-<div class="split-txt rv"><p class="eyebrow">Where It All Began</p><h2 class="h2">Built Around the People Who Would <em>Fill It</em></h2><p class="body drop" style="margin-top:16px">Alberto Ardissone built Casa Agua Alta during one of life's most generous chapters, a time of family, of polo, and of the joy that only Careyes seems to produce. Everything here was shaped by that life.</p><div class="btns"><a href="#" class="btn btn-o" onclick="go('suites');return false">Explore Suites →</a><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire</a></div></div>
+<div class="split-txt rv"><p class="eyebrow">Where It All Began</p><h2 class="h2">Built Around the People Who Would <em>Fill It</em></h2><p class="body drop" style="margin-top:16px">Alberto Ardissone built Casa Agua Alta during one of life's most generous chapters. A time of family, of polo, and of the joy that only Careyes seems to produce. The house was designed around the way life actually unfolds here: long mornings by the pool, afternoons at the polo club, evenings on the terrace watching the sun disappear behind the Pacific. Two pools anchor the outdoor living spaces. The main infinity pool faces the ocean, while a private Moroccan-style plunge pool offers an intimate retreat surrounded by tropical gardens. Every corner of this house was shaped by that life.</p><div class="btns"><a href="#" class="btn btn-o" onclick="go('suites');return false">Explore Suites →</a><a href="#" class="btn btn-f" onclick="go('contact');return false">Inquire</a></div></div>
 <div class="split-img rv"><img src="images/compressed_DSC03757.jpg" alt=""></div>
 </div></section>
 <section class="sec bg-ck"><div class="split">
 <div class="split-img rv"><img src="images/arte.jpg" alt=""></div>
-<div class="split-txt rv"><p class="eyebrow">A House That Breathes</p><h2 class="h2">Art-Filled Without Being Formal. <em>Curated Without Being Cold.</em></h2><p class="body" style="margin-top:16px">Open terraces face the ocean. Shared spaces invite long evenings. Private suites offer quiet that reminds you why you came. The house sits within Careyes' protected 35,000-acre reserve.</p></div>
+<div class="split-txt rv"><p class="eyebrow">A House That Breathes</p><h2 class="h2">Art-Filled Without Being Formal. <em>Curated Without Being Cold.</em></h2><p class="body" style="margin-top:16px">Multiple terraces offer views in every direction. From Cascada and Pink Loco, the lagoon stretches out below. From the main terrace, Copa del Sol is visible against the hillside. Open-air living rooms, a private cinema, and gathering spaces designed for long evenings with good company. The house sits within Careyes' protected 35,000-acre reserve, where jungle meets the Pacific and the outside world feels very far away.</p></div>
 </div></section>
 <section class="sec bg-w" style="padding-top:0"><div class="container"><div class="pnav"><a href="#" onclick="go('home');return false"><span>Previous</span><strong>← Home</strong></a><a href="#" onclick="go('suites');return false"><span>Next</span><strong>Suites →</strong></a></div></div></section>
 </div>
@@ -590,11 +581,11 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 
 <section class="sec bg-w"><div class="split">
 <div class="split-img rv"><img src="images/e-copaaguaalta2018-vi2-1154-copia.jpg" alt="Polo"></div>
-<div class="split-txt rv"><p class="eyebrow">Polo</p><h2 class="h2">The Polo Fields Three Miles from <em>the House</em></h2><p class="body" style="margin-top:16px">Two regulation Bermuda grass fields, stables for 150 horses, 60 trained ponies. Matches Tue/Wed/Fri/Sat during season.</p><div class="btns"><a href="#" class="btn btn-o" onclick="go('polo');return false">Discover Polo →</a></div></div>
+<div class="split-txt rv"><p class="eyebrow">Polo</p><h2 class="h2">The Polo Fields Three Miles from <em>the House</em></h2><p class="body" style="margin-top:16px">The Costa Careyes Polo Club sits three miles from the house, with two regulation Bermuda grass fields, stables for 150 horses, and a fleet of 60 trained playing ponies. During season (November through April), matches run Tuesday, Wednesday, Friday, and Saturday. Whether you play competitively or simply want to watch from the sidelines with a drink in hand, polo is woven into the rhythm of life here.</p><div class="btns"><a href="#" class="btn btn-o" onclick="go('polo');return false">Discover Polo →</a></div></div>
 </div></section>
 
 <section class="sec bg-ck"><div class="split">
-<div class="split-txt rv"><p class="eyebrow">Beach & Ocean</p><h2 class="h2">Nine Miles of <em>Pacific Coastline</em></h2><p class="body" style="margin-top:16px">Calm, warm, and almost entirely private. Playa Rosa Beach Club nearby. Paddleboarding, kayaking, snorkeling, and boat excursions to hidden coves.</p></div>
+<div class="split-txt rv"><p class="eyebrow">Beach & Ocean</p><h2 class="h2">Nine Miles of <em>Pacific Coastline</em></h2><p class="body" style="margin-top:16px">Nine miles of coastline, almost entirely private. Playa Rosa Beach Club is a five-minute walk from the house, the social heart of Careyes where ceviche, ocean views, and good conversation fill the afternoon. Beyond Playa Rosa, quieter beaches like Careyitos, Teopa, and Playa Careyes are easily reached by car. Paddleboarding, kayaking, snorkeling, private boat charters, and whale watching in season (December through March) are all arranged through our concierge.</p></div>
 <div class="split-img rv"><img src="images/careyes-foto.jpg" alt="Coast"></div>
 </div></section>
 
@@ -647,7 +638,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="mhero"><img src="images/compressed_DSC03929.jpg" alt=""><div class="mhero-ov"></div><div class="mhero-c"><p class="eyebrow">Gastronomy</p><h2 class="h2">The Table at <em>Agua Alta</em></h2><p>In Careyes, the best meals happen at home.</p></div></div>
 <section class="sec bg-w"><div class="split">
 <div class="split-txt rv"><p class="eyebrow">Meals Made Here</p><h2 class="h2">Long, Unhurried, <em>Deeply Personal</em></h2><p class="body" style="margin-top:16px">Breakfast always included fresh fruit, eggs, bread, strong coffee. Private in-house dining on request. Seasonal, local ingredients. Menus customized for dietary needs. Cocktail hour on the terrace every evening.</p></div>
-<div class="split-img rv"><img src="images/compressed_DSC03743.jpg" alt="Food"></div>
+<div class="suite-gallery rv"><div><img src="images/compressed_DSC04017.jpg" alt=""></div><div><img src="images/kitchen.png" alt=""></div></div>
 </div></section>
 <section class="sec bg-ck"><div class="split">
 <div class="split-img rv"><img src="images/kitchen.png" alt="Breakfast at Agua Alta"></div>
@@ -712,7 +703,7 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 <div class="mhero"><img src="images/careyes-hero.jpg" alt=""><div class="mhero-ov"></div><div class="mhero-c"><p class="eyebrow">Location</p><h2 class="h2">Careyes, México. <em>Costalegre, Jalisco.</em></h2><p>Hidden along the Pacific coast entirely by design.</p></div></div>
 <section class="sec bg-w"><div class="split">
 <div class="split-txt rv"><p class="eyebrow">Where You Are</p><h2 class="h2">A 35,000-Acre Reserve Where Jungle Meets <em>the Pacific</em></h2>
-<p class="body" style="margin-top:16px">Nine miles of untouched coastline. A polo club. A turtle sanctuary. An international community of artists, equestrians, and people who found this place and never fully left.</p>
+<p class="body" style="margin-top:16px">Careyes was founded in 1968 by Italian-born visionary Gian Franco Brignone, who saw in this stretch of Pacific coastline something worth protecting. Today it is a 35,000-acre private reserve encompassing nine miles of untouched coastline, a world-class polo club, a sea turtle sanctuary, and an international community of artists, architects, equestrians, and families who found this place and never fully left. The colorful casitas, cosmic art installations, and dramatic cliff-side architecture have made Careyes one of the most exclusive and least understood destinations in Mexico.</p>
 <p class="body" style="margin-top:12px">Founded by Gian Franco Brignone in 1968, Careyes has become a sanctuary of colorful casitas, cosmic art installations, and pristine beaches one of the world's best-kept secrets.</p>
 <div class="loc-grid">
 <div class="loc-item"><label>Puerto Vallarta</label><span>2.5 hours</span></div>
