@@ -857,9 +857,10 @@ document.querySelectorAll('.suite-gallery').forEach(function(gal){
   var right=document.createElement('button');right.className='gal-arrow right';right.innerHTML='&#8250;';
   wrap.appendChild(left);wrap.appendChild(right);
   
-  var scrollAmt=gal.querySelector('div').offsetWidth+10;
-  left.addEventListener('click',function(){gal.scrollBy({left:-scrollAmt,behavior:'smooth'})});
-  right.addEventListener('click',function(){gal.scrollBy({left:scrollAmt,behavior:'smooth'})});
+    var items=gal.querySelectorAll('div');
+    var idx=0;
+    left.addEventListener('click',function(){if(idx>0){idx--;items[idx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'})}});
+    right.addEventListener('click',function(){if(idx<items.length-1){idx++;items[idx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'})}});
   
   gal.querySelectorAll('img').forEach(function(img){
     img.addEventListener('click',function(){
