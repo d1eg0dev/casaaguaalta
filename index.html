@@ -53,6 +53,7 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     align-items: flex-end; /* Alinea el texto al fondo */
     background-color: #000;
 }
+.hero-mobile{display:none}
     
 /* ══ HERO INNER: AJUSTE EDITORIAL ══ */
 .hero-inner {
@@ -99,7 +100,10 @@ header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
     .hero-inner {
         padding: 0 35px 60px 35px; /* Lo que ya te funcionaba en móvil */
         text-align: left;
+    .hero-desktop{display:none!important}
+    .hero-mobile{display:block!important}
     }
+    
     
     .hero-inner h1 {
         font-size: 2.8rem;
@@ -457,7 +461,8 @@ header{padding:0 20px;height:58px}.nav-links,.nav-cta{display:none}.hamburger{di
 
 <section class="hero">
 <div class="hero-media">
-<img src="images/hero.jpg" alt="Casa Agua Alta" style="width:100%;height:100%;object-fit:cover">
+<img src="images/hero.jpg" alt="Casa Agua Alta" class="hero-desktop" style="width:100%;height:100%;object-fit:cover">
+<img src="images/pools-mobile.jpg" alt="Casa Agua Alta" class="hero-mobile" style="width:100%;height:100%;object-fit:cover">
 <div class="hero-overlay"></div>
 </div>
 <div class="hero-inner">
